@@ -121,9 +121,9 @@ function Index() {
       speakText(reply);
     } catch (e: any) {
       const msg = String(e?.message || e);
-      if (/api key|API_KEY|invalid|permission/i.test(msg)) {
+      if (/\b(api[_ ]?key|API_KEY|invalid api key|permission denied|unauthenticated)\b/i.test(msg)) {
         toast.error("API key looks invalid. Please update it in settings.");
-      } else if (/rate|quota|429/i.test(msg)) {
+      } else if (/\b(rate limit|quota|resource_exhausted|429)\b/i.test(msg)) {
         toast.error("Rate limit hit — wait a moment and try again.");
       } else {
         toast.error("Interview error: " + msg);
