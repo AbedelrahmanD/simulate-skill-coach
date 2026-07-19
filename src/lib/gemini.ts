@@ -62,7 +62,7 @@ export async function sendToGemini(
 ): Promise<string> {
   const genAI = new GoogleGenerativeAI(apiKey);
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash",
+    model: "gemini-2.5-flash",
     systemInstruction: systemPrompt,
   });
   const chat = model.startChat({
