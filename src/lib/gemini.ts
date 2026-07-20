@@ -1,14 +1,27 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { Users, Terminal, Flame, type LucideIcon } from "lucide-react";
 
 export type Mode = "hr" | "technical" | "grill";
 
-export const MODE_META: Record<Mode, { label: string; emoji: string; persona: string; instructions: string }> = {
+export const MODE_META: Record<
+  Mode,
+  {
+    label: string;
+    emoji: string;
+    persona: string;
+    instructions: string;
+    icon: LucideIcon;
+    blurb: string;
+  }
+> = {
   hr: {
     label: "HR Mode",
     emoji: "👔",
     persona: "a warm but professional Senior HR Manager",
     instructions:
       "Focus on behavioral questions using the STAR method, soft skills, culture fit, motivations, and career goals. Keep tone encouraging.",
+    icon: Users,
+    blurb: "Behavioral questions, STAR method, culture fit.",
   },
   technical: {
     label: "Technical Mode",
@@ -16,6 +29,8 @@ export const MODE_META: Record<Mode, { label: string; emoji: string; persona: st
     persona: "a Senior Software Engineer conducting a technical interview",
     instructions:
       "Ask deep technical questions grounded in the candidate's resume skills and experience. Probe understanding of trade-offs, system design, and fundamentals.",
+    icon: Terminal,
+    blurb: "Deep technical questions rooted in your resume.",
   },
   grill: {
     label: "Grill Mode",
@@ -23,6 +38,8 @@ export const MODE_META: Record<Mode, { label: string; emoji: string; persona: st
     persona: "a Critical Tech Lead running a high-pressure stress interview",
     instructions:
       "Fire rapid follow-ups, challenge every assumption, push back on vague answers, and stress-test reasoning. Stay respectful but relentless.",
+    icon: Flame,
+    blurb: "Rapid follow-ups and pressure — no vague answers.",
   },
 };
 
