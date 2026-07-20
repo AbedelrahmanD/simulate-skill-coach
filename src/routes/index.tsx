@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Settings, RefreshCw, Briefcase } from "lucide-react";
+import { Settings, RefreshCw, Briefcase, Users, Terminal, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
@@ -141,8 +141,8 @@ function Index() {
 
   return (
     <ErrorBoundary>
-      <div className="min-h-dvh bg-background">
-        <header className="border-b border-border bg-card/60 backdrop-blur">
+      <div className="min-h-dvh bg-transparent">
+        <header className="border-b border-white/20 bg-white/40 backdrop-blur-md shadow-sm">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
             <div className="flex items-center gap-2">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
@@ -167,25 +167,30 @@ function Index() {
         <main className="mx-auto grid max-w-6xl gap-4 p-4 md:grid-cols-[minmax(0,340px)_1fr]">
           <aside className="space-y-4">
             {/* Mode selector */}
-            <div className="rounded-lg border border-border bg-card p-4">
-              <Label className="mb-2 block text-sm font-medium">Interview Mode</Label>
+            <div className="rounded-xl border border-white/40 bg-white/60 backdrop-blur-md p-4 shadow-sm">
+              <Label className="mb-3 block text-sm font-semibold text-foreground">Interview Mode</Label>
               <div className="grid grid-cols-3 gap-2">
                 {(Object.keys(MODE_META) as Mode[]).map((m) => {
                   const meta = MODE_META[m];
                   const active = mode === m;
+                  
+                  // Icon mapping for mode
+                  const Icon = m === "hr" ? Users : m === "technical" ? Terminal : Flame;
+                  const iconColor = m === "hr" ? "text-indigo-500" : m === "technical" ? "text-emerald-500" : "text-orange-500";
+                  
                   return (
                     <button
                       key={m}
                       onClick={() => setMode(m)}
                       aria-pressed={active}
-                      className={`rounded-md border p-2 text-center text-xs transition-all ${
+                      className={`flex flex-col items-center rounded-lg border p-3 text-center transition-all duration-300 hover:scale-[1.02] ${
                         active
                           ? "border-primary bg-primary/10 text-primary shadow-sm"
-                          : "border-border bg-background hover:bg-muted"
+                          : "border-white/40 bg-white/40 hover:bg-white/80"
                       }`}
                     >
-                      <div className="text-lg">{meta.emoji}</div>
-                      <div className="mt-1 font-medium">{meta.label.replace(" Mode", "")}</div>
+                      <Icon className={`h-6 w-6 mb-1 ${active ? "text-primary" : iconColor}`} strokeWidth={active ? 2.5 : 2} />
+                      <span className="text-xs font-semibold">{meta.label.replace(" Mode", "")}</span>
                     </button>
                   );
                 })}
@@ -193,10 +198,10 @@ function Index() {
             </div>
 
             {/* Voice */}
-            <div className="rounded-lg border border-border bg-card p-4">
-              <Label className="mb-2 block text-sm font-medium">Interviewer Voice</Label>
+            <div className="rounded-xl border border-white/40 bg-white/60 backdrop-blur-md p-4 shadow-sm">
+              <Label className="mb-2 block text-sm font-semibold text-foreground">Interviewer Voice</Label>
               <Select value={voiceName} onValueChange={setVoiceName}>
-                <SelectTrigger><SelectValue placeholder="Select a voice" /></SelectTrigger>
+                <SelectTrigger className="bg-white/70 backdrop-blur border-white/40"><SelectValue placeholder="Select a voice" /></SelectTrigger>
                 <SelectContent>
                   {voices.map((v) => (
                     <SelectItem key={v.name} value={v.name}>{v.name} ({v.lang})</SelectItem>
@@ -204,26 +209,26 @@ function Index() {
                   {voices.length === 0 && <SelectItem value="none" disabled>No voices found</SelectItem>}
                 </SelectContent>
               </Select>
-              <Button variant="ghost" size="sm" className="mt-2 w-full" onClick={() => selectedVoice && speakText("Hello. I will be your interviewer today.")}>
+              <Button variant="ghost" size="sm" className="mt-2 w-full hover:bg-white/50" onClick={() => selectedVoice && speakText("Hello. I will be your interviewer today.")}>
                 Test voice
               </Button>
             </div>
 
             {/* Resume */}
-            <div>
-              <Label className="mb-2 block text-sm font-medium">Resume (PDF)</Label>
+            <div className="rounded-xl border border-white/40 bg-white/60 backdrop-blur-md p-4 shadow-sm">
+              <Label className="mb-2 block text-sm font-semibold text-foreground">Resume (PDF)</Label>
               <ResumeUpload resumeText={resumeText} onChange={setResumeText} />
             </div>
 
             {/* JD */}
-            <div className="rounded-lg border border-border bg-card p-4">
-              <Label htmlFor="jd" className="mb-2 block text-sm font-medium">Job Description (optional)</Label>
+            <div className="rounded-xl border border-white/40 bg-white/60 backdrop-blur-md p-4 shadow-sm">
+              <Label htmlFor="jd" className="mb-2 block text-sm font-semibold text-foreground">Job Description (optional)</Label>
               <Textarea
                 id="jd"
                 value={jd}
                 onChange={(e) => setJd(e.target.value)}
                 placeholder="Paste the target job description…"
-                className="min-h-[80px] text-sm"
+                className="min-h-[80px] text-sm bg-white/70 backdrop-blur border-white/40"
               />
             </div>
           </aside>

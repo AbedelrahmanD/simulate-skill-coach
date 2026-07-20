@@ -33,16 +33,16 @@ export function ResumeUpload({ resumeText, onChange }: Props) {
 
   if (resumeText) {
     return (
-      <div className="rounded-lg border border-border bg-card p-4">
+      <div className="rounded-xl border border-white/40 bg-white/60 backdrop-blur p-4">
         <div className="mb-2 flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm font-medium text-foreground">
             <FileText className="h-4 w-4 text-primary" /> Resume parsed ({resumeText.length} chars)
           </div>
-          <Button variant="ghost" size="sm" onClick={() => onChange("")} aria-label="Remove resume">
+          <Button variant="ghost" size="sm" onClick={() => onChange("")} aria-label="Remove resume" className="hover:bg-white/50">
             <X className="h-4 w-4" />
           </Button>
         </div>
-        <div className="max-h-32 overflow-auto rounded border border-border bg-muted/40 p-2 text-xs text-muted-foreground whitespace-pre-wrap">
+        <div className="max-h-32 overflow-auto rounded border border-white/40 bg-white/40 p-2 text-xs text-muted-foreground whitespace-pre-wrap">
           {resumeText.slice(0, 800)}{resumeText.length > 800 ? "…" : ""}
         </div>
       </div>
@@ -63,8 +63,8 @@ export function ResumeUpload({ resumeText, onChange }: Props) {
       role="button"
       tabIndex={0}
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") inputRef.current?.click(); }}
-      className={`flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-6 text-center transition-colors ${
-        drag ? "border-primary bg-primary/5" : "border-border bg-card hover:bg-muted/30"
+      className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed p-6 text-center transition-all duration-300 ${
+        drag ? "border-primary bg-primary/10 scale-[1.02]" : "border-white/60 bg-white/40 hover:bg-white/60 hover:border-primary/50 shadow-sm"
       }`}
     >
       <input

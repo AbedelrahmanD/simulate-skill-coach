@@ -67,7 +67,7 @@ export function ChatInterface({ messages, loading, speaking, onSend }: Props) {
   };
 
   return (
-    <div className="flex h-full flex-col rounded-lg border border-border bg-card">
+    <div className="flex h-full flex-col rounded-2xl border border-white/40 bg-white/60 backdrop-blur-md shadow-lg overflow-hidden">
       <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-4">
         {messages.length === 0 && (
           <div className="flex h-full flex-col items-center justify-center text-center text-sm text-muted-foreground">
@@ -77,23 +77,23 @@ export function ChatInterface({ messages, loading, speaking, onSend }: Props) {
           </div>
         )}
         {messages.map((m, i) => (
-          <div key={i} className={`flex gap-3 ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+          <div key={i} className={`flex gap-3 animate-in fade-in slide-in-from-bottom-2 duration-300 ${m.role === "user" ? "justify-end" : "justify-start"}`}>
             {m.role === "model" && (
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 shadow-sm border border-indigo-200">
                 <Bot className="h-4 w-4" />
               </div>
             )}
             <div
-              className={`max-w-[75%] rounded-2xl px-4 py-2 text-sm leading-relaxed ${
+              className={`max-w-[75%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${
                 m.role === "user"
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-foreground"
+                  ? "bg-primary text-primary-foreground shadow-primary/20 rounded-tr-sm"
+                  : "bg-white border border-slate-100 text-slate-800 rounded-tl-sm"
               }`}
             >
               {m.text}
             </div>
             {m.role === "user" && (
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary shadow-sm">
                 <User className="h-4 w-4" />
               </div>
             )}
@@ -106,8 +106,8 @@ export function ChatInterface({ messages, loading, speaking, onSend }: Props) {
         )}
       </div>
 
-      <div className="border-t border-border p-3">
-        {voiceError && <p className="mb-2 text-xs text-destructive">{voiceError}</p>}
+      <div className="border-t border-white/40 bg-white/40 p-4 backdrop-blur-md">
+        {voiceError && <p className="mb-2 text-xs text-red-500 font-medium">{voiceError}</p>}
         <div className="flex items-end gap-2">
           <Textarea
             aria-label="Your answer"
@@ -120,7 +120,7 @@ export function ChatInterface({ messages, loading, speaking, onSend }: Props) {
               }
             }}
             placeholder="Type your answer or press the mic…"
-            className="min-h-[44px] resize-none"
+            className="min-h-[44px] resize-none bg-white/80 backdrop-blur border-white/60 rounded-xl shadow-inner"
             rows={1}
           />
           <Button
