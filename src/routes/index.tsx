@@ -196,7 +196,7 @@ function Index() {
             {/* Top bar */}
             <header className="flex items-center justify-between gap-3 rounded-2xl border border-border/60 bg-card/70 px-4 py-3 shadow-card backdrop-blur">
               <div className="flex min-w-0 items-center gap-3">
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[--gradient-emerald] text-primary-foreground shadow-md lg:hidden">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground shadow-md lg:hidden">
                   <Sparkles className="h-5 w-5" />
                 </div>
                 <div className="min-w-0">
