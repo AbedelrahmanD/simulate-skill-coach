@@ -72,7 +72,7 @@ export function ChatInterface({ messages, loading, speaking, onSend, onStopSpeak
       {/* Chat header */}
       <div className="flex items-center justify-between border-b border-border/60 bg-card/70 px-5 py-3">
         <div className="flex items-center gap-2">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-[--gradient-emerald] text-primary-foreground shadow-sm">
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground shadow-sm">
             <MessageSquareQuote className="h-4 w-4" />
           </span>
           <div>
@@ -189,7 +189,7 @@ export function ChatInterface({ messages, loading, speaking, onSend, onStopSpeak
             disabled={loading || !input.trim()}
             aria-label="Send answer"
             size="icon"
-            className="h-11 w-11 rounded-full bg-[--gradient-emerald] text-primary-foreground shadow-md hover:opacity-95"
+            className="h-11 w-11 rounded-full bg-primary text-primary-foreground shadow-md hover:opacity-95"
           >
             <Send className="h-5 w-5" />
           </Button>

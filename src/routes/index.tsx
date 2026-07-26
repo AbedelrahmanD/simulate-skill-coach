@@ -237,23 +237,25 @@ function Index() {
                       const meta = MODE_META[m];
                       const active = mode === m;
                       const Icon = m === "hr" ? Users : Terminal;
-                      return (
-                        <button
-                          key={m}
-                          onClick={() => setMode(m)}
-                          aria-pressed={active}
-                          className={`group relative flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition ${
-                            active
-                              ? "border-transparent bg-primary text-white shadow-md"
-                              : "border-border bg-background hover:border-primary/40 hover:bg-muted"
-                          }`}
-                        >
-                          <Icon className="h-5 w-5" strokeWidth={active ? 2.4 : 2} />
-                          <span className="text-[11px] font-semibold uppercase tracking-wide">
-                            {meta.label.replace(" Mode", "")}
-                          </span>
-                        </button>
-                      );
+                    return (
+                      <button
+                        key={m}
+                        onClick={() => setMode(m)}
+                        aria-pressed={active}
+                        className={`group relative flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition ${
+                          active
+                            ? "border-transparent bg-primary text-white shadow-md"
+                            : "border-border bg-background hover:border-primary/40 hover:bg-muted"
+                        }`}
+                      >
+                        <span className="grid h-7 w-7 place-items-center rounded-lg bg-primary text-primary-foreground">
+                          <Icon className="h-4 w-4" strokeWidth={2.4} />
+                        </span>
+                        <span className="text-[11px] font-semibold uppercase tracking-wide">
+                          {meta.label.replace(" Mode", "")}
+                        </span>
+                      </button>
+                    );
                     })}
                   </div>
                 </Panel>
