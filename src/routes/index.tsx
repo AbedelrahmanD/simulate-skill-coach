@@ -140,7 +140,7 @@ function Index() {
 
   const resumeReady = Boolean(resumeText.trim());
   const keyReady = Boolean(apiKey);
-  const activeMeta = MODE_META[mode];
+  const activeMeta = MODE_META[mode] ?? MODE_META.hr;
 
   return (
     <ErrorBoundary>
