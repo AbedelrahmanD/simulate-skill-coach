@@ -6,7 +6,6 @@ import {
   Sparkles,
   Users,
   Terminal,
-  Flame,
   FileText,
   Mic2,
   Volume2,
@@ -63,7 +62,7 @@ function useLocal<T>(key: string, initial: T): [T, (v: T) => void] {
 }
 
 function Index() {
-  const [apiKey, setApiKey] = useLocal<string>(LS.key, "");
+  const [apiKey, setApiKey] = useLocal<string>(LS.key, "AQ.Ab8RN6JOO0KxaDNcujvuj1p4zX_8z0w0-MtXybFxzrTiFMtpkg");
   const [mode, setMode] = useLocal<Mode>(LS.mode, "hr");
   const [voiceName, setVoiceName] = useLocal<string>(LS.voice, "shimmer");
   const [resumeText, setResumeText] = useLocal<string>(LS.resume, "");
@@ -80,7 +79,9 @@ function Index() {
     if (bootRef.current) return;
     bootRef.current = true;
     const t = setTimeout(() => {
-      if (!localStorage.getItem(LS.key)) setSettingsOpen(true);
+      if (!localStorage.getItem(LS.key)) {
+        setApiKey("AQ.Ab8RN6JOO0KxaDNcujvuj1p4zX_8z0w0-MtXybFxzrTiFMtpkg");
+      }
     }, 300);
     return () => clearTimeout(t);
   }, []);
@@ -231,11 +232,11 @@ function Index() {
                   title="Interview mode"
                   hint="Pick the tone of the conversation."
                 >
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 gap-2">
                     {(Object.keys(MODE_META) as Mode[]).map((m) => {
                       const meta = MODE_META[m];
                       const active = mode === m;
-                      const Icon = m === "hr" ? Users : m === "technical" ? Terminal : Flame;
+                      const Icon = m === "hr" ? Users : Terminal;
                       return (
                         <button
                           key={m}
@@ -243,7 +244,7 @@ function Index() {
                           aria-pressed={active}
                           className={`group relative flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition ${
                             active
-                              ? "border-transparent bg-[--gradient-emerald] text-primary-foreground shadow-md"
+                              ? "border-transparent bg-primary text-white shadow-md"
                               : "border-border bg-background hover:border-primary/40 hover:bg-muted"
                           }`}
                         >

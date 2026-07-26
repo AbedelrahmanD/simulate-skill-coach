@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { Users, Terminal, Flame, type LucideIcon } from "lucide-react";
+import { Users, Terminal, type LucideIcon } from "lucide-react";
 
-export type Mode = "hr" | "technical" | "grill";
+export type Mode = "hr" | "technical";
 
 export const MODE_META: Record<
   Mode,
@@ -31,15 +31,6 @@ export const MODE_META: Record<
       "Ask deep technical questions grounded in the candidate's resume skills and experience. Probe understanding of trade-offs, system design, and fundamentals.",
     icon: Terminal,
     blurb: "Deep technical questions rooted in your resume.",
-  },
-  grill: {
-    label: "Grill Mode",
-    emoji: "⚡",
-    persona: "a Critical Tech Lead running a high-pressure stress interview",
-    instructions:
-      "Fire rapid follow-ups, challenge every assumption, push back on vague answers, and stress-test reasoning. Stay respectful but relentless.",
-    icon: Flame,
-    blurb: "Rapid follow-ups and pressure — no vague answers.",
   },
 };
 
