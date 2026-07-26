@@ -35,7 +35,7 @@ export const MODE_META: Record<
 };
 
 export function buildSystemPrompt(mode: Mode, resumeText: string, jd: string): string {
-  const meta = MODE_META[mode];
+  const meta = MODE_META[mode] ?? MODE_META.hr;
   return `You are ${meta.persona}, conducting a ${meta.label} interview.
 
 CANDIDATE RESUME:
